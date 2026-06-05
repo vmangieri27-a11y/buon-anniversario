@@ -62,23 +62,26 @@ button{
     top:45%;
 }
 
-/* IMMAGINE FINALE */
+/* IMMAGINE FINALE - FIX DEFINITIVO */
 #gift{
     position:absolute;
     top:55%;
     left:50%;
-    transform:translate(-50%,-50%) scale(0);
     width:200px;
     max-width:70vw;
+
+    /* IMPORTANTISSIMO: niente display none */
     opacity:0;
+    transform:translate(-50%,-50%) scale(0);
+    pointer-events:none;
+
     transition:all .4s ease;
     z-index:9999;
 }
 
-/* quando appare */
 #gift.show{
-    transform:translate(-50%,-50%) scale(1);
     opacity:1;
+    transform:translate(-50%,-50%) scale(1);
 }
 </style>
 </head>
@@ -92,7 +95,7 @@ button{
     <button id="no">No</button>
 
     <!-- IMMAGINE -->
-    <img id="gift" src="IMG_3842.jpeg" alt="regalo">
+    <img id="gift" src="/regalo-anniversario/IMG_3842.jpeg" alt="regalo">
 </div>
 
 <script>
@@ -103,7 +106,7 @@ const gift = document.getElementById("gift");
 let moves = 0;
 const maxMoves = 4;
 
-/* bottone che scappa */
+/* movimento bottone SÌ */
 function moveYes(){
     if(moves >= maxMoves) return;
 
@@ -118,16 +121,14 @@ function moveYes(){
     moves++;
 }
 
-/* mobile + desktop */
 si.addEventListener("mouseover", moveYes);
 si.addEventListener("touchstart", moveYes);
 
-/* click finale */
+/* CLICK SICURO */
 si.addEventListener("click", ()=>{
     gift.classList.add("show");
 });
 
-/* NO disattivato */
 no.addEventListener("click", e=>{
     e.preventDefault();
 });

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regalo di Anniversario</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        text-align:center;
+        margin:0;
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        overflow:hidden;
+        background:#fff5f7;
+    }
+
+    h1{
+        color:#d63384;
+        margin-bottom:40px;
+    }
+
+    button{
+        padding:15px 30px;
+        font-size:20px;
+        cursor:pointer;
+        border:none;
+        border-radius:10px;
+        margin:10px;
+    }
+
+    #si{
+        background:#28a745;
+        color:white;
+        position:relative;
+    }
+
+    #no{
+        background:#dc3545;
+        color:white;
+    }
+
+    #regalo{
+        display:none;
+        margin-top:30px;
+        max-width:350px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Vuoi scoprire il tuo regalo di anniversario?</h1>
+
+<div>
+    <button id="si">Sì</button>
+    <button id="no">No</button>
+</div>
+
+<img
+id="regalo"
+src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Tennis_racket_and_balls.jpg"
+alt="Racchetta da tennis">
+
+<script>
+const si = document.getElementById("si");
+const regalo = document.getElementById("regalo");
+
+let tentativi = 0;
+
+si.addEventListener("mouseover", () => {
+    if (tentativi < 2) {
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        si.style.position = "absolute";
+        si.style.left = x + "px";
+        si.style.top = y + "px";
+
+        tentativi++;
+    }
+});
+
+si.addEventListener("click", () => {
+    regalo.style.display = "block";
+});
+
+document.getElementById("no").addEventListener("click", (e) => {
+    e.preventDefault();
+});
+</script>
+
+</body>
+</html>

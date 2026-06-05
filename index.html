@@ -62,7 +62,7 @@ button{
     top:45%;
 }
 
-/* IMMAGINE */
+/* IMMAGINE FINALE */
 #gift{
     display:none;
     position:absolute;
@@ -99,8 +99,8 @@ button{
     <button id="si">Sì</button>
     <button id="no">No</button>
 
-    <!-- LA TUA IMMAGINE LOCALE -->
-    <img id="gift" src="IMG_3842.jpeg" alt="regalo">
+    <!-- IMMAGINE LOCALE (FIX PATH IMPORTANTE) -->
+    <img id="gift" src="./IMG_3842.jpeg" alt="regalo">
 </div>
 
 <script>
@@ -111,7 +111,7 @@ const gift = document.getElementById("gift");
 let moves = 0;
 const maxMoves = 4;
 
-/* movimento controllato del bottone SÌ */
+/* movimento bottone SÌ */
 function moveYes(){
     if(moves >= maxMoves) return;
 
@@ -130,12 +130,12 @@ function moveYes(){
 si.addEventListener("mouseover", moveYes);
 si.addEventListener("touchstart", moveYes);
 
-/* bottone NO disattivato */
+/* blocca NO */
 no.addEventListener("click", e=>{
     e.preventDefault();
 });
 
-/* click finale */
+/* mostra regalo */
 si.addEventListener("click", ()=>{
     gift.classList.add("show");
 });

@@ -55,16 +55,16 @@ button{
     top:45%;
 }
 
-.racket{
+.imgFinale{
     display:none;
     position:absolute;
     left:50%;
     transform:translateX(-50%);
-    width:140px;
+    width:180px;
 }
 
-#r1{ top:55%; }
-#r2{ top:75%; }
+#img1{ top:55%; }
+#img2{ top:75%; }
 
 .show{
     display:block !important;
@@ -86,27 +86,16 @@ button{
     <button id="si">Sì</button>
     <button id="no">No</button>
 
-    <!-- RACCHETTA SVG 1 -->
-    <svg id="r1" class="racket" viewBox="0 0 64 64">
-        <circle cx="28" cy="28" r="18" fill="none" stroke="black" stroke-width="3"/>
-        <line x1="10" y1="46" x2="54" y2="10" stroke="black" stroke-width="3"/>
-        <rect x="26" y="46" width="6" height="14" fill="black"/>
-    </svg>
-
-    <!-- RACCHETTA SVG 2 -->
-    <svg id="r2" class="racket" viewBox="0 0 64 64">
-        <circle cx="28" cy="28" r="18" fill="none" stroke="black" stroke-width="3"/>
-        <line x1="10" y1="46" x2="54" y2="10" stroke="black" stroke-width="3"/>
-        <rect x="26" y="46" width="6" height="14" fill="black"/>
-    </svg>
-
+    <!-- LE TUE IMMAGINI -->
+    <img id="img1" class="imgFinale" src="IMG_3842.jpeg" alt="regalo">
+    <img id="img2" class="imgFinale" src="IMG_3842.jpeg" alt="regalo">
 </div>
 
 <script>
 const si = document.getElementById("si");
 const no = document.getElementById("no");
-const r1 = document.getElementById("r1");
-const r2 = document.getElementById("r2");
+const img1 = document.getElementById("img1");
+const img2 = document.getElementById("img2");
 
 let moves = 0;
 const maxMoves = 4;
@@ -133,8 +122,8 @@ no.addEventListener("click", e=>{
 });
 
 si.addEventListener("click", ()=>{
-    r1.classList.add("show");
-    r2.classList.add("show");
+    img1.classList.add("show");
+    img2.classList.add("show");
 });
 </script>
 

@@ -6,82 +6,67 @@
 <title>Regalo di Anniversario</title>
 
 <style>
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ffe6f0,#fff);
-    overflow:hidden;
-    text-align:center;
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff);
+    overflow: hidden;
+    text-align: center;
 }
 
-h1{
-    font-size:20px;
-    color:#d63384;
-    padding:0 15px;
-    position:absolute;
-    top:6%;
-    width:100%;
+h1 {
+    margin-top: 50px;
+    color: #d63384;
+    padding: 0 20px;
 }
 
-#area{
-    position:relative;
-    width:100%;
-    height:70vh;
+#area {
+    position: relative;
+    width: 100%;
+    height: 75vh;
 }
 
-/* BOTTONI */
-button{
-    position:absolute;
-    padding:14px 26px;
-    font-size:18px;
-    border:none;
-    border-radius:12px;
-    touch-action: manipulation;
+button {
+    position: absolute;
+    padding: 14px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
 }
 
-#si{
-    background:#28a745;
-    color:white;
-    left:40%;
-    top:45%;
+#si {
+    background: #28a745;
+    color: white;
+    left: 35%;
+    top: 40%;
 }
 
-#no{
-    background:#dc3545;
-    color:white;
-    left:55%;
-    top:45%;
+#no {
+    background: #dc3545;
+    color: white;
+    left: 55%;
+    top: 40%;
 }
 
-/* IMMAGINE FINALE - FIX DEFINITIVO */
-#gift{
-    position:absolute;
-    top:55%;
-    left:50%;
-    width:200px;
-    max-width:70vw;
-
-    /* IMPORTANTISSIMO: niente display none */
-    opacity:0;
-    transform:translate(-50%,-50%) scale(0);
-    pointer-events:none;
-
-    transition:all .4s ease;
-    z-index:9999;
+#gift {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    max-width: 80vw;
+    border-radius: 12px;
 }
 
-#gift.show{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1);
+.show {
+    display: block !important;
 }
 </style>
 </head>
@@ -94,42 +79,49 @@ button{
     <button id="si">Sì</button>
     <button id="no">No</button>
 
-    <!-- IMMAGINE -->
-    <img id="gift" src="/regalo-anniversario/IMG_3842.jpeg" alt="regalo">
+    <img
+        id="gift"
+        src="IMG_3842.jpeg"
+        alt="Regalo"
+    >
 </div>
 
 <script>
 const si = document.getElementById("si");
 const no = document.getElementById("no");
 const gift = document.getElementById("gift");
+const area = document.getElementById("area");
 
-let moves = 0;
-const maxMoves = 4;
+let fughe = 0;
+const maxFughe = 4;
 
-/* movimento bottone SÌ */
-function moveYes(){
-    if(moves >= maxMoves) return;
+function spostaBottone() {
+    const rect = area.getBoundingClientRect();
 
-    const area = document.getElementById("area").getBoundingClientRect();
+    const maxX = rect.width - 120;
+    const maxY = rect.height - 120;
 
-    const x = Math.random() * (area.width - 120);
-    const y = Math.random() * (area.height - 120);
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
     si.style.left = x + "px";
     si.style.top = y + "px";
 
-    moves++;
+    fughe++;
 }
 
-si.addEventListener("mouseover", moveYes);
-si.addEventListener("touchstart", moveYes);
+si.addEventListener("click", function(e) {
 
-/* CLICK SICURO */
-si.addEventListener("click", ()=>{
+    if (fughe < maxFughe) {
+        e.preventDefault();
+        spostaBottone();
+        return;
+    }
+
     gift.classList.add("show");
 });
 
-no.addEventListener("click", e=>{
+no.addEventListener("click", function(e) {
     e.preventDefault();
 });
 </script>
